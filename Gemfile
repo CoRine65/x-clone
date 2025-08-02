@@ -57,3 +57,5 @@ group :development do
 end
 
 gem "jsbundling-rails"
+
+gem "devise"
