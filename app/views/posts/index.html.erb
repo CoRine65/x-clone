@@ -1,0 +1,13 @@
+<h1>All Posts</h1>
+
+<%= link_to 'New Post', new_post_path if user_signed_in? %>
+
+<% @posts.each do |post| %>
+  <div>
+    <h3><%= link_to post.title, post_path(post) %></h3>
+    <p><%= post.body %></p>
+    <p><small>By <%= post.user.email %></small></p>
+  </div>
+<% end %>
+
+<%= link_to '← Back to Home', root_path %>

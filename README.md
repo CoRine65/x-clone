@@ -38,3 +38,13 @@ APP START---
             end
     - ERROR: log out devise sign out route expects DELETE. 
         - cause i do have delete but it seems i forgot to add yarn add @rails/ujs
+    - generate Post: model, controller, edit view
+        - create and update controller
+        - generate a simple view for testing
+            - created a _form partial since both my new and edit need to show a form to create or update a post. 
+            - REMEMBER: each view/model_name : corresponds to the methods in the model: index, create, new, it tells the controller what to load upon request. 
+        - Adding: displaying all posts in the home#index, but only for viewing, if the user would like to comment, like, save or repost: has to sign in/up
+            - update home_controller
+            - forgot link to new post
+            - generated two bodies of post, because i did not render form but rather created two forms. 
+            - tested edit: ERROR: forgot to add edit template: views
