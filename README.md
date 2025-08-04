@@ -48,3 +48,21 @@ APP START---
             - forgot link to new post
             - generated two bodies of post, because i did not render form but rather created two forms. 
             - tested edit: ERROR: forgot to add edit template: views
+7. generate the comment model
+    - generate: controller
+        - set up associations
+        - since there is no navigational function to comments the only CRUD views needed are: create, update destroy
+        - remember to authenticate user!
+    - set up a nested route:
+        - since the comments are with the post, a nested route: 
+            resources :posts do 
+                resources :comments, only [:create, :destroy, :update]
+    - set up the posts/show view 
+        - optional: using a partial _form in case we use the form again later
+    - TESTING:
+        - Error: undefined method: 'edit_post_comment_path'
+            - fix: forgot to add :edit to routes
+        - Error: Not displaying the body or title of the main post
+            - create method in the post_controller did not have the complete syntax!
+        - Error: Update / edit page does not redirect to the post page!
+            - update method was redirecting to itself.

@@ -4,3 +4,14 @@
 
 <%= link_to 'Edit', edit_post_path(@post) if current_user == @post.user %>
 <%= link_to 'Back', posts_path %>
+
+<h2>Comments</h2>
+<%= render partial: "comments/form", locals: { post: @post } if user_signed_in? %>
+
+<% @post.comments.each do |comment| %>
+  <p><strong><%= comment.user.email %></strong>: <%= comment.body %></p>
+  <% if user_signed_in? && comment.user == current_user %>
+    <%= link_to "Delete", post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+  <% end %>
+<% end %>
