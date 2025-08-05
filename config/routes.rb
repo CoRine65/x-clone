@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   root "home#index"
   resources :users
   resources :posts do
-    resources :comments, only: [ :create, :destroy, :update, :edit ]
+    resources :comments, only: [ :create, :destroy, :update, :edit ] do
+      resources :likes, only: [ :create, :destroy ]
+    end
+    resources :likes, only: [ :create, :destroy ]
   end
 end

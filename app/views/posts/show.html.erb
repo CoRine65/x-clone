@@ -5,13 +5,37 @@
 <%= link_to 'Edit', edit_post_path(@post) if current_user == @post.user %>
 <%= link_to 'Back', posts_path %>
 
+<p>
+  <%= pluralize(@post.likes.count, "like") %>
+  <% if user_signed_in? %>
+    <% if @post.likes.exists?(user: current_user) %>
+      <%= button_to "Unlike", post_like_path(@post, @post.likes.find_by(user: current_user)), method: :delete %>
+    <% else %>
+      <%= button_to "Like", post_likes_path(@post), method: :post %>
+    <% end %>
+  <% end %>
+</p>
+
 <h2>Comments</h2>
 <%= render partial: "comments/form", locals: { post: @post } if user_signed_in? %>
 
 <% @post.comments.each do |comment| %>
   <p><strong><%= comment.user.email %></strong>: <%= comment.body %></p>
+
+  <p>
+    <%= pluralize(comment.likes.count, "like") %>
+    <% if user_signed_in? %>
+      <% if comment.likes.exists?(user: current_user) %>
+        <%= button_to "Unlike", post_comment_like_path(@post, comment, comment.likes.find_by(user: current_user)), method: :delete %>
+      <% else %>
+        <%= button_to "Like", post_comment_likes_path(@post, comment), method: :post %>
+      <% end %>
+    <% end %>
+  </p>
+  
   <% if user_signed_in? && comment.user == current_user %>
     <%= link_to "Delete", post_comment_path(@post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
     <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
   <% end %>
 <% end %>
+

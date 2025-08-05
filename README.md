@@ -66,3 +66,15 @@ APP START---
             - create method in the post_controller did not have the complete syntax!
         - Error: Update / edit page does not redirect to the post page!
             - update method was redirecting to itself.
+8. generate the like model
+    - learn something new: Polymorphic association
+        - rails g model Like user:references likable:references{polymorphic}
+            - this creates a table with user_id, likeable_id, and likable_type: this let's us like any model 
+    - set up associations
+    - set up controller: create and destroy
+        - remember to authenticate!
+    - set up routes 
+    - set up views/likes/show.html.erb
+    - testing: 
+        - error: like not showing:
+            - fixed: typo and removed auto generated routes from routes.
