@@ -78,3 +78,6 @@ APP START---
     - testing: 
         - error: like not showing:
             - fixed: typo and removed auto generated routes from routes.
+
+
+--- will continue project to furhter develop front end, at a later time -- 
